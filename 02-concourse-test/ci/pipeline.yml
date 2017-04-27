@@ -1,0 +1,13 @@
+---
+resources:
+  - name: git-repository
+    type: git
+    source:
+      uri: "https://github.com/Fabian-Fynn/assignments-cd/tree/master/02-concource-test"
+jobs:
+  - name: commit-stage
+    plan:
+      - get: git-repository
+        trigger: true
+      - task: run-test
+        file: git-repository/ci/commit_build.yml
